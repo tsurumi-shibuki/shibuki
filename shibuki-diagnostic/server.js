@@ -185,7 +185,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`\n🚀 士業事務所 経営力診断サーバー起動`);
   console.log(`   Port: ${PORT}`);
   console.log(`   API: http://localhost:${PORT}/api/health\n`);
