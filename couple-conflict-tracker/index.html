@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ふたりノート - ケンカ & ラブレター</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>ふたりノート</h1>
+    <p class="tagline">ケンカも気持ちも、ふたりで残していく</p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="conflicts" role="tab">ケンカ記録</button>
+    <button class="tab" data-tab="letters" role="tab">ラブレター</button>
+    <button class="tab" data-tab="reveal" role="tab">メッセージをひらく</button>
+  </nav>
+
+  <main>
+    <!-- ========= ケンカ記録 ========= -->
+    <section id="conflicts" class="panel active">
+      <h2>ケンカを記録する</h2>
+      <form id="conflict-form" class="card form">
+        <input type="hidden" name="id" />
+        <label>
+          タイトル（一言で）
+          <input type="text" name="title" placeholder="例: 家事の分担について" required />
+        </label>
+        <label>
+          きっかけ
+          <textarea name="trigger" rows="2" placeholder="何があった？" required></textarea>
+        </label>
+        <label>
+          話し合った内容
+          <textarea name="discussion" rows="3" placeholder="お互いどんなことを話した？"></textarea>
+        </label>
+        <label>
+          解決方法・今後のルール
+          <textarea name="resolution" rows="2" placeholder="どうやって解決した？次どうする？"></textarea>
+        </label>
+        <div class="row">
+          <label class="flex">
+            ケンカをした日
+            <input type="date" name="startDate" required />
+          </label>
+          <label class="flex">
+            終わった日
+            <input type="date" name="endDate" />
+          </label>
+        </div>
+        <div class="actions">
+          <button type="submit" class="primary">保存する</button>
+          <button type="button" id="conflict-cancel" class="ghost" hidden>キャンセル</button>
+        </div>
+      </form>
+
+      <h3 class="section-title">これまでの記録 <span id="conflict-count" class="badge">0</span></h3>
+      <ul id="conflict-list" class="list"></ul>
+      <p id="conflict-empty" class="empty">まだ記録はありません。最初のひとつを書いてみよう。</p>
+    </section>
+
+    <!-- ========= ラブレター ========= -->
+    <section id="letters" class="panel">
+      <h2>ラブレターを残す</h2>
+      <p class="hint">普段は言えない「ありがとう」や「好き」を貯めておこう。</p>
+      <form id="letter-form" class="card form">
+        <label>
+          差出人
+          <input type="text" name="author" placeholder="あなたの名前やニックネーム" required />
+        </label>
+        <label>
+          メッセージ
+          <textarea name="message" rows="4" placeholder="いつもありがとう..." required></textarea>
+        </label>
+        <div class="actions">
+          <button type="submit" class="primary">ポストに入れる</button>
+        </div>
+      </form>
+
+      <h3 class="section-title">貯まっているラブレター <span id="letter-count" class="badge">0</span></h3>
+      <ul id="letter-list" class="list letters"></ul>
+      <p id="letter-empty" class="empty">まだ一通もありません。ひとことから書き始めよう。</p>
+    </section>
+
+    <!-- ========= メッセージをひらく ========= -->
+    <section id="reveal" class="panel">
+      <h2>気持ちがモヤっとしたら</h2>
+      <p class="hint">ボタンを押すと、相手からのラブレターが一通ランダムに届きます。</p>
+      <div class="reveal-card" id="reveal-card">
+        <p class="reveal-placeholder">ボタンをタップしてね</p>
+      </div>
+      <div class="actions center">
+        <button type="button" id="reveal-button" class="primary big">メッセージをひらく</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>データはこの端末のブラウザにだけ保存されます。</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
